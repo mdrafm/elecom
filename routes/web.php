@@ -11,6 +11,7 @@ use App\Http\Controllers\Seller\SellerMainController;
 use App\Http\Controllers\Seller\SellerStoreCntroller;
 use App\Http\Controllers\Seller\SellerProductCntroller;
 use App\Http\Controllers\Customer\CustomerMainController;
+use App\Http\Controllers\MasterCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -55,9 +56,23 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
             Route::get('/discount','index')->name('discount.create');
             Route::get('/discount/manage','manage')->name('discount.manage');
         });
+        Route::controller(ProductDiscountController::class)->group(function () {
+
+            Route::get('/discount','index')->name('discount.create');
+            Route::get('/discount/manage','manage')->name('discount.manage');
+        });
+
+        Route::controller(MasterCategoryController::class)->group(function () {
+
+            Route::post('/store/category','storecat')->name('store.cat');
+            Route::get('/category/{id}','showcat')->name('show.cat');
+            Route::put('/category/update/{id}','updatecat')->name('update.cat');
+            Route::delete('/category/delete/{id}','deletecat')->name('delete.cat');
+           
+        });
     });
 });
-
+//vendor routing
 Route::middleware(['auth', 'verified', 'rolemanager:vendor'])->group(function () {
     Route::prefix('vendor')->group(function () {
            Route::controller(SellerMainController::class)->group(function () {
@@ -76,9 +91,9 @@ Route::middleware(['auth', 'verified', 'rolemanager:vendor'])->group(function ()
 
     });
 });
-
+//customer routing
 Route::middleware(['auth', 'verified', 'rolemanager:customer'])->group(function () {
-    Route::prefix('vendor')->group(function () {
+    Route::prefix('customer')->group(function () {
            Route::controller(CustomerMainController::class)->group(function () {
             Route::get('/dashboard','index')->name('dashboard');
             Route::get('/order/history','history')->name('customer.history');

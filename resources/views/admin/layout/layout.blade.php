@@ -34,7 +34,7 @@
                         Pages
                     </li>
 
-                    <li class="sidebar-item {{request()->routeIs('admin'):'active':''}} " >
+                    <li class="sidebar-item {{request()->routeIs('admin')?'active':''}} " >
                         <a class="sidebar-link" href="{{route('admin')}}">
                             <i class="align-middle" data-feather="sliders"></i> <span
                                 class="align-middle">Dashboard</span>
@@ -43,12 +43,12 @@
                     <li class="sidebar-header">
                         Category
                     </li>
-                    <li class="sidebar-item {{request()->routeIs('category.create'):'active:'''}} ">
+                    <li class="sidebar-item {{request()->routeIs('category.create')?'active':''}} ">
                         <a class="sidebar-link" href="{{route('category.create')}}">
                             <i class="align-middle" data-feather="plus"></i> <span class="align-middle">Create</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{request()->routeIs('category.manage'):'active:'''}} ">
+                    <li class="sidebar-item {{request()->routeIs('category.manage')?'active':''}} ">
                         <a class="sidebar-link" href="{{route('category.manage')}}">
                             <i class="align-middle" data-feather="user"></i> <span class="align-middle">Manage</span>
                         </a>

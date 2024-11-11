@@ -1,5 +1,5 @@
 @extends('admin.layout.layout')
-@section()
+@section('admin_page_title')
     Cart History- Admin Panel
 @endsection
 @section('admin_layout')
